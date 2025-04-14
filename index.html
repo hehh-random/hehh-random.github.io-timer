@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Demple ❤️ Chiku🦫</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #000000, #8B0000);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    .timer {
+      font-size: 1.5em;
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: 2px solid white;
+      border-radius: 15px;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    .anniversary-msg {
+      font-size: 1.3em;
+      color: #ffcccc;
+      margin-top: 20px;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 10px 15px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Time been together😏 </h1>
+  <div class="timer" id="loveTimer">Loading...</div>
+  <div class="anniversary-msg" id="anniversaryMsg"></div>
+
+  <script>
+    const startDate = new Date("March 1, 2025 00:00:00").getTime();
+    const loveTimerEl = document.getElementById("loveTimer");
+    const anniversaryMsgEl = document.getElementById("anniversaryMsg");
+
+    function updateTimer() {
+      const now = new Date();
+      const nowTime = now.getTime();
+      const distance = nowTime - startDate;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      loveTimerEl.innerHTML = `Together for: <br><strong>${days}</strong> Days, <strong>${hours}</strong> Hours, <strong>${minutes}</strong> Minutes, <strong>${seconds}</strong> Seconds 💖`;
+
+      // Check for monthly anniversary
+      const start = new Date("March 1, 2025");
+      const yearDiff = now.getFullYear() - start.getFullYear();
+      const monthDiff = now.getMonth() - start.getMonth() + yearDiff * 12;
+      const isAnniversaryDay = now.getDate() === 1;
+
+      if (isAnniversaryDay && monthDiff > 0) {
+        anniversaryMsgEl.innerHTML = `uhm uhm sir ji aaj ${monthDiff} mahine machine pure hue 😏`;
+      } else {
+        anniversaryMsgEl.innerHTML = "";
+      }
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  </script>
+</body>
+</html>
